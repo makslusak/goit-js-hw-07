@@ -4,7 +4,7 @@ import { galleryItems } from './gallery-items.js';
 const galleryRef = document.querySelector('.gallery');
 
 galleryRef.addEventListener('click', onImageClick);
-// window.addEventListener('keydown', onModalClose);
+window.addEventListener('keydown', onModalClose);
 
 addMarkup(galleryItems);
 
@@ -38,15 +38,14 @@ function onImageClick(event) {
 
   onModalOpen(source);
 }
-
+let instance;
 function onModalOpen(url) {
-  const instance = basicLightbox.create(`<img src="${url}">`);
+  instance = basicLightbox.create(`<img src="${url}">`);
   instance.show();
 }
 
-// Close by Esc
-// function onModalClose(event) {
-//   if (event.keyCode === 27) {
-//     instance.close();
-//   }
-// }
+function onModalClose(event) {
+  if (event.keyCode === 27) {
+    instance.close();
+  }
+}
